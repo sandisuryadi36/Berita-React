@@ -32,7 +32,7 @@ export default class Navbar extends React.Component {
                                 <a className="nav-link" href="#sports" onClick={() => this.props.category("sports")} >Sports</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#technology" onClick={() => this.props.category("techmology")} >Technology</a>
+                                <a className="nav-link" href="#technology" onClick={() => this.props.category("technology")} >Technology</a>
                             </li>
                         </ul>
                     </div>
