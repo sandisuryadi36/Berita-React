@@ -14,25 +14,25 @@ export default class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="collapsibleNavId">
                         <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                             <li className="nav-item active">
-                                <a className="nav-link" href="./">Home</a>
+                                <a className="nav-link" href="#general" onClick={() => this.props.category("general")} >General</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#business" onclick="viewCategory('business')">Business</a>
+                                <a className="nav-link" href="#business" onClick={() => this.props.category("business")} >Business</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#entertainment" onclick="viewCategory('entertainment')">Entertainment</a>
+                                <a className="nav-link" href="#entertainment" onClick={() => this.props.category("entertainment")} >Entertainment</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#health" onclick="viewCategory('health')">Health</a>
+                                <a className="nav-link" href="#health" onClick={() => this.props.category("health")} >Health</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#science" onclick="viewCategory('science')">Science</a>
+                                <a className="nav-link" href="#science" onClick={() => this.props.category("science")} >Science</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#sports" onclick="viewCategory('sports')">Sports</a>
+                                <a className="nav-link" href="#sports" onClick={() => this.props.category("sports")} >Sports</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#technology" onclick="viewCategory('technology')">Technology</a>
+                                <a className="nav-link" href="#technology" onClick={() => this.props.category("techmology")} >Technology</a>
                             </li>
                         </ul>
                     </div>
