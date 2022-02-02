@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./component/navbar";
+import SearchBar from "./component/searchbar";
 
 export default class Page extends React.Component {
     constructor() {
@@ -16,9 +17,16 @@ export default class Page extends React.Component {
         this.setState({category: value})
     }
 
+    changeSearch = (value) => {
+        this.setState({searchQuery: value})
+    }
+
     render() {
         return (
-            <Navbar category={this.changeCategory} />
+            <div>
+                <Navbar category={this.changeCategory} />
+                <SearchBar searchQuery={this.changeSearch} />
+            </div>
         )
     }
 }
