@@ -1,4 +1,5 @@
 import React from "react";
+import Content from "./component/content";
 import Navbar from "./component/navbar";
 import SearchBar from "./component/searchbar";
 
@@ -26,6 +27,12 @@ export default class Page extends React.Component {
             <div>
                 <Navbar category={this.changeCategory} />
                 <SearchBar searchQuery={this.changeSearch} />
+                <Content
+                    lang={this.state.lang}
+                    category={this.state.category}
+                    searchQuery={this.state.searchQuery}
+                    page={this.state.page}
+                />
             </div>
         )
     }

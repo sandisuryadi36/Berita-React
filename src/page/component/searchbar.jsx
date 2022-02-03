@@ -29,11 +29,11 @@ export default class SearchBar extends React.Component {
         return (
             <form className="container" id="search-form">
                 <div className="d-flex my-2">
-                    <input className="form-control me-sm-2" type="text" placeholder="Search" id="search-bar" name="search" onChange={event => this.setSearch(event.target.value)} />
-                        <input className="btn btn-outline-success my-2 my-sm-0" type="button" id="search-btn" name="search" value="Search" onClick={this.searchClick} ></input>
+                    <input className="form-control me-sm-2" type="text" placeholder="Search" onChange={event => this.setSearch(event.target.value)} />
+                        <input className="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onClick={this.searchClick} ></input>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="live-search-check" onChange={event => this.setLiveSearch(event.target.checked)} />
+                    <input className="form-check-input" type="checkbox" role="switch" onChange={event => this.setLiveSearch(event.target.checked)} />
                         <label className="form-check-label">Live search</label>
                 </div>
             </form>
