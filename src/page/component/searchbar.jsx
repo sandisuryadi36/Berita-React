@@ -10,9 +10,13 @@ export default class SearchBar extends React.Component {
     }
 
     setSearch(value) {
-        if (!this.state.live) {
+        if (this.state.live) {
             this.setState({searchQuery: value}, () => this.props.searchQuery(this.state.searchQuery))
         }
+    }
+
+    setLiveSearch(value) {
+        this.setState({live: value})
     }
 
     render() {
@@ -23,7 +27,7 @@ export default class SearchBar extends React.Component {
                         <input className="btn btn-outline-success my-2 my-sm-0" type="button" id="search-btn" name="search" value="Search"></input>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="live-search-check" />
+                    <input className="form-check-input" type="checkbox" role="switch" id="live-search-check" onChange={event => this.setLiveSearch(event.target.checked)} />
                         <label className="form-check-label">Live search</label>
                 </div>
             </form>
