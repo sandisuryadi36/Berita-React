@@ -1,8 +1,8 @@
 import React from "react";
 
 export default class SearchBar extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             live: false,
             searchQuery: ""
@@ -29,7 +29,7 @@ export default class SearchBar extends React.Component {
         return (
             <form className="container" id="search-form">
                 <div className="d-flex my-2">
-                    <input className="form-control me-sm-2" type="text" placeholder="Search" onChange={event => this.setSearch(event.target.value)} />
+                    <input className="form-control me-sm-2" type="text" placeholder="Search" onChange={event => this.setSearch(event.target.value)} ref={this.props.searchRef} />
                         <input className="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onClick={this.searchClick} ></input>
                 </div>
                 <div className="form-check form-switch">

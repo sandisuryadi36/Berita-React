@@ -12,10 +12,15 @@ export default class Page extends React.Component {
             searchQuery: "",
             page: 1
         }
+        this.searchRef = React.createRef()
     }
 
     changeCategory = (value) => {
-        this.setState({category: value})
+        this.searchRef.current.value = ""
+        this.setState({
+            searchQuery: "",
+            category: value
+        })
     }
 
     changeSearch = (value) => {
@@ -26,7 +31,7 @@ export default class Page extends React.Component {
         return (
             <div>
                 <Navbar category={this.changeCategory} />
-                <SearchBar searchQuery={this.changeSearch} />
+                <SearchBar searchQuery={this.changeSearch} searchRef={this.searchRef}/>
                 <Content
                     lang={this.state.lang}
                     category={this.state.category}
