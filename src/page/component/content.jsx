@@ -1,16 +1,17 @@
 import React from "react"
+import Card from "./card"
 
 export default class Content extends React.Component {
     url = ""
     header = ""
-    
+
     constructor(props) {
         super(props)
         this.state = {
             propsData: props,
             token: "5be7d56373774432b6f59713eebbfdba",
+            dataArticles: [],
         }
-
         this.setUrlHeader()
     }
 
@@ -46,19 +47,47 @@ export default class Content extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.url)
-        console.log(this.header)
+        console.log("mount")
+        this.fetchData(this.url)
     }
 
     componentDidUpdate() {
+        let oldUrl = this.url
         this.setUrlHeader()
-        console.log(this.url)
-        console.log(this.header)
+        if (oldUrl !== this.url) {
+            this.fetchData(this.url)
+        }
+        console.log("update")
     }
 
-    render(){
+    fetchData = (url) => {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ dataArticles: data.articles })
+            })
+    }
+
+    render() {
         return (
-            <div></div>
+            <div className="container my-2" id="content">
+                <h1 className="my-3">{this.header}</h1>
+                <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+                    {this.state.dataArticles.map((item, index) => {
+                        return (
+                            <Card
+                                key={index}
+                                title={item.title}
+                                description={item.description}
+                                url={item.url}
+                                urlToImage={item.urlToImage}
+                                publishedAt={item.publishedAt}
+                                source={item.source.name}
+                            />
+                        )
+                    })}
+                </div>
+            </div>
         )
     }
 }

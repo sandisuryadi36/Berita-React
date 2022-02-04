@@ -31,7 +31,7 @@ export default class Page extends React.Component {
         return (
             <div>
                 <Navbar category={this.changeCategory} />
-                <SearchBar searchQuery={this.changeSearch} searchRef={this.searchRef}/>
+                <SearchBar searchQuery={this.changeSearch} searchRef={this.searchRef} />
                 <Content
                     lang={this.state.lang}
                     category={this.state.category}
