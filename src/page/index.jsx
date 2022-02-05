@@ -20,12 +20,20 @@ export default class Page extends React.Component {
         this.searchRef.current.value = ""
         this.setState({
             searchQuery: "",
-            category: value
+            category: value,
+            page: 1,
         })
     }
 
     changeSearch = (value) => {
-        this.setState({searchQuery: value})
+        this.setState({
+            searchQuery: value,
+            page: 1,
+        })
+    }
+
+    changePage = (value) => { 
+        this.setState({page: value})
     }
 
     render() {
@@ -38,6 +46,7 @@ export default class Page extends React.Component {
                     category={this.state.category}
                     searchQuery={this.state.searchQuery}
                     page={this.state.page}
+                    changePage={this.changePage}
                 />
                 <Footer />
             </div>
