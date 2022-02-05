@@ -13,7 +13,7 @@ export default class Content extends React.Component {
             token: "5be7d56373774432b6f59713eebbfdba",
             dataArticles: [],
             totalResults: 0,
-            fetchResult: []
+            fetchResult: ""
         }
         this.setUrlHeader()
     }
@@ -73,12 +73,16 @@ export default class Content extends React.Component {
                 } else if (data.status === "ok") {
                     // request success but no result
                     this.setState({
-                        fetchResult: <p>No result found</p>
+                        fetchResult: "No result found",
+                        dataArticles: [],
+                        totalResults: 0,
                     })
                 } else if (data.status === "error") {
                     // request error
                     this.setState({
-                        fetchResult: <p>{data.message}</p>
+                        fetchResult: data.message,
+                        dataArticles: [],
+                        totalResults: 0,
                     })
                 }
             })
@@ -110,8 +114,7 @@ export default class Content extends React.Component {
                 <h1 className="my-3">{this.header}</h1>
                 <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} changePage={this.changePage}/>
                 <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
-                    {this.state.fetchResult}
-                    {showAllCards()}
+                    {this.state.fetchResult !== "" ? this.state.fetchResult : showAllCards()}
                 </div>
                 <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} />
             </div>
