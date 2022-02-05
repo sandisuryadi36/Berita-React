@@ -13,7 +13,8 @@ export default class Content extends React.Component {
             token: "5be7d56373774432b6f59713eebbfdba",
             dataArticles: [],
             totalResults: 0,
-            fetchResult: ""
+            fetchResult: "",
+            loading: true
         }
         this.setUrlHeader()
     }
@@ -46,6 +47,7 @@ export default class Content extends React.Component {
                 dataArticles: [],
                 totalResults: 0,
                 fetchResult: "",
+                loading: true,
                 propsData: props
             }
         }
@@ -68,7 +70,7 @@ export default class Content extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                if (data.totalResults !== 0 && data.status === "ok") { 
+                if (data.totalResults !== 0 && data.status === "ok") {
                     this.setState({
                         dataArticles: data.articles,
                         totalResults: data.totalResults,
@@ -88,15 +90,16 @@ export default class Content extends React.Component {
                         totalResults: 0,
                     })
                 }
+                this.setState({ loading: false })
             })
     }
 
-    changePage = (page) => { 
+    changePage = (page) => {
         this.props.changePage(page)
     }
 
     render() {
-        let showAllCards = () => { 
+        let showAllCards = () => {
             return this.state.dataArticles.map((item, index) => {
                 return (
                     <Card
@@ -115,7 +118,8 @@ export default class Content extends React.Component {
         return (
             <div className="container my-2" id="content">
                 <h1 className="my-3">{this.header}</h1>
-                <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} changePage={this.changePage}/>
+                <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} changePage={this.changePage} />
+                {this.state.loading && <div className="col-12 text-center"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
                 <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
                     {this.state.fetchResult !== "" ? this.state.fetchResult : showAllCards()}
                 </div>
