@@ -43,6 +43,9 @@ export default class Content extends React.Component {
     static getDerivedStateFromProps = (props, state) => {
         if (props !== state.propsData) {
             return {
+                dataArticles: [],
+                totalResults: 0,
+                fetchResult: "",
                 propsData: props
             }
         }
