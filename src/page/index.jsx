@@ -1,5 +1,6 @@
 import React from "react";
 import Content from "./component/content";
+import Footer from "./component/footer";
 import Navbar from "./component/navbar";
 import SearchBar from "./component/searchbar";
 
@@ -38,6 +39,7 @@ export default class Page extends React.Component {
                     searchQuery={this.state.searchQuery}
                     page={this.state.page}
                 />
+                <Footer />
             </div>
         )
     }

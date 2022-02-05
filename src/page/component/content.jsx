@@ -1,5 +1,6 @@
 import React from "react"
 import Card from "./card"
+import Pagination from "./pagination"
 
 export default class Content extends React.Component {
     url = ""
@@ -11,6 +12,7 @@ export default class Content extends React.Component {
             propsData: props,
             token: "5be7d56373774432b6f59713eebbfdba",
             dataArticles: [],
+            totalResults: 0,
         }
         this.setUrlHeader()
     }
@@ -64,29 +66,40 @@ export default class Content extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                this.setState({ dataArticles: data.articles })
+                console.log(data)
+                this.setState({
+                    dataArticles: data.articles,
+                    totalResults: data.totalResults,
+                })
+                console.log(this.state.totalResults)
             })
     }
 
     render() {
+        let showAllCards = () => { 
+            return this.state.dataArticles.map((item, index) => {
+                return (
+                    <Card
+                        key={index}
+                        title={item.title}
+                        description={item.description}
+                        url={item.url}
+                        urlToImage={item.urlToImage}
+                        publishedAt={item.publishedAt}
+                        source={item.source.name}
+                    />
+                )
+            })
+        }
+
         return (
             <div className="container my-2" id="content">
                 <h1 className="my-3">{this.header}</h1>
+                <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} />
                 <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
-                    {this.state.dataArticles.map((item, index) => {
-                        return (
-                            <Card
-                                key={index}
-                                title={item.title}
-                                description={item.description}
-                                url={item.url}
-                                urlToImage={item.urlToImage}
-                                publishedAt={item.publishedAt}
-                                source={item.source.name}
-                            />
-                        )
-                    })}
+                    {showAllCards()}
                 </div>
+                <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} />
             </div>
         )
     }
