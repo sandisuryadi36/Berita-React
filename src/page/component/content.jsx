@@ -71,13 +71,12 @@ export default class Content extends React.Component {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data.totalResults !== 0 && data.status === "ok") {
                     this.setState({
                         dataArticles: data.articles,
                         totalResults: data.totalResults,
                     })
-                } else if (data.totalResults === 0 && data.status === "ok") {
+                } else if (data.status === "ok") {
                     // request success but no result
                     this.setState({
                         fetchResult: "No result found",
