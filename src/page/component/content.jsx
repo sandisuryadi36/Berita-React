@@ -121,7 +121,7 @@ export default class Content extends React.Component {
             <div className="container my-2" id="content">
                 <h1 className="my-3">{this.header}</h1>
                 <Pagination pageNow={this.state.propsData.page} totalResults={this.state.totalResults} changePage={this.changePage} />
-                {this.state.loading && <div className="col-12 text-center"><div className="spinner-border text-primary" style={{width: "4rem", height: "4rem"}} role="status"><span className="sr-only">Loading...</span></div></div>}
+                {this.state.loading && <div className="col-12 text-center"><div className="spinner-border text-primary" style={{width: "4rem", height: "4rem"}} role="status"></div></div>}
                 <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
                     {this.state.fetchResult !== "" ? this.state.fetchResult : showAllCards()}
                 </div>

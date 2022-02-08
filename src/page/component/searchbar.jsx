@@ -9,9 +9,19 @@ export default class SearchBar extends React.Component {
         }
     }
 
+    timer = null
+    // timeOutSearch = () => {
+    //     clearTimeout(this.timer)
+    //     this.timer = setTimeout(() => {
+    //         this.props.searchQuery(this.state.searchQuery)
+    //     }, 1000)
+    // }
     setSearch(value) {
         if (this.state.live) {
-            this.setState({searchQuery: value}, () => this.props.searchQuery(this.state.searchQuery))
+            clearTimeout(this.timer)
+            this.timer = setTimeout(() => {
+                this.setState({searchQuery: value}, () => this.props.searchQuery(this.state.searchQuery))
+            }, 500)
         } else {
             this.setState({ searchQuery: value })
         }
@@ -40,7 +50,7 @@ export default class SearchBar extends React.Component {
                         <input className="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onClick={this.searchClick} ></input>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" onChange={event => this.setLiveSearch(event.target.checked)} />
+                    <input className="form-check-input" type="checkbox" role="switch" onChange={event => this.setLiveSearch(event.target.checked)} checked={this.state.live} />
                         <label className="form-check-label">Live search</label>
                 </div>
             </form>
