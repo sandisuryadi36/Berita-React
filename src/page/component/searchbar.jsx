@@ -25,11 +25,18 @@ export default class SearchBar extends React.Component {
         this.props.searchQuery(this.state.searchQuery)
     }
 
+    pressEnter = (event) => { 
+        if (event.keyCode === 13) {
+            event.preventDefault()
+            this.searchClick()
+        }
+    }
+
     render() {
         return (
             <form className="container" id="search-form">
                 <div className="d-flex my-2">
-                    <input className="form-control me-sm-2" type="text" placeholder="Search" onChange={event => this.setSearch(event.target.value)} ref={this.props.searchRef} />
+                    <input className="form-control me-sm-2" type="text" placeholder="Search" onKeyDown={this.pressEnter} onChange={event => this.setSearch(event.target.value)} ref={this.props.searchRef} />
                         <input className="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onClick={this.searchClick} ></input>
                 </div>
                 <div className="form-check form-switch">
